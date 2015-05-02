@@ -58,7 +58,7 @@ class Translation
                     [
                         'key' => $this->key,
                         'lang' => $lang,
-                        'text' => Html::encode($text),
+                        'text' => $text,
                         'format' => 'html',
                     ]
                 )
