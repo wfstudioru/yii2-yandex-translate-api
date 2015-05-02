@@ -1,0 +1,26 @@
+{
+    "name": "wfstudioru/yii2-yandex-translate-api",
+    "version":"1.0.0",
+    "description": "Yii2 extension to Yandex Translate API",
+    "keywords": ["yii2", "yandex", "translate", "api"],
+    "type": "yii2-extension",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/wfstudioru/yii2-yandex-translate-api/issues",
+        "wiki": "https://github.com/wfstudioru/yii2-yandex-translate-api/wiki",
+        "source": "https://github.com/wfstudioru/yii2-yandex-translate-api"
+    },
+    "authors": [
+        {
+            "name": "BaBL86",
+            "email": "babl1986@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": { "wfstudioru\\translate\\translate\\": "" }
+    }
+}
