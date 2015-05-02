@@ -9,13 +9,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-$ php composer.phar require babl86/yii2-yandex-translate-api "dev-master"
+$ php composer.phar require wfstudioru/yii2-yandex-translate-api "dev-master"
 ```
 
 or add
 
 ```
-"babl86/yii2-yandex-translate-api": "dev-master"
+"wfstudioru/yii2-yandex-translate-api": "dev-master"
 ```
 
 to the ```require``` section of your `composer.json` file.
@@ -33,7 +33,7 @@ to the ```require``` section of your `composer.json` file.
 'components' => [
     ...
     'translate' => [
-        'class' => 'babl86\translate\Translation',
+        'class' => 'wfstudioru\translate\Translation',
         'key' => 'INSERT-YOUR-API-KEY',
     ],
     ...
