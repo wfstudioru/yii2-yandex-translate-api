@@ -34,38 +34,60 @@ class Translation
      */
     public function translate($source, $target, $text)
     {
-        return $this->getResponse($this->getRequest('', $text, $source, $target));
+        $langDirection = explode('-',$source)[0].'-'.explode('-',$target)[0];
+        if (strlen($text)>300) {
+            return $this->getPostResponse($text, $langDirection);
+        } else {
+            return $this->getResponse($text, $langDirection);
+        }
     }
 
     /**
      * Forming query parameters
-     * @param  string $method API method
      * @param  string $text   Source text string
-     * @param  string $source Source language
-     * @param  string $target Target language
+     * @param  string $lang   Translation direction ru-en, en-es
      * @return array          Data properties
      */
-    protected function getRequest($method, $text = '', $source = '', $target = '')
+    protected function getPostResponse($text = '', $lang = 'en-ru')
     {
-        $lang = explode('-',$source)[0].'-'.explode('-',$target)[0];
-        $request = self::API_URL . $method . '?' . http_build_query(
+        $opts = array('http' =>
+            array(
+                'method'  => 'POST',
+                'header'  => 'Content-type: application/x-www-form-urlencoded',
+                'content' => http_build_query(
+                    [
+                        'key' => $this->key,
+                        'lang' => $lang,
+                        'text' => Html::encode($text),
+                        'format' => 'html',
+                    ]
+                )
+            )
+        );
+
+        $context  = stream_context_create($opts);
+
+        $response = file_get_contents(self::API_URL, false, $context);
+        return Json::decode($response, true);
+    }
+
+    /**
+     * Forming query parameters
+     * @param  string $text   Source text string
+     * @param  string $lang   Translation direction ru-en, en-es
+     * @return array          Data properties
+     */
+    protected function getResponse($text = '', $lang = 'en-ru')
+    {
+        $request = self::API_URL . '?' . http_build_query(
             [
                 'key' => $this->key,
                 'lang' => $lang,
                 'text' => Html::encode($text),
+                'format' => 'html',
             ]
         );
 
-        return $request;
-    }
-
-    /**
-     * Getting response
-     * @param string $request
-     * @return array
-     */
-    protected function getResponse($request)
-    {
         $response = file_get_contents($request);
         return Json::decode($response, true);
     }
