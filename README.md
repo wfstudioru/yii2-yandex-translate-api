@@ -43,3 +43,22 @@ to the ```require``` section of your `composer.json` file.
 ```php
 Yii::$app->translate->translate($source, $target, $text);
 ```
+
+### Usage
+
+```php
+Yii::$app->translate->translate('en-US', 'ru-RU', 'Hi everybody!');
+```
+
+the response would be:
+
+```php 
+array (
+    'code' => 200,    
+    'lang' => 'en-ru',
+    'text' => array (
+        0 => 'Привет всем!' 
+                   )
+      )
+
+```
