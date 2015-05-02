@@ -21,6 +21,6 @@
     },
     "minimum-stability": "dev",
     "autoload": {
-        "psr-4": { "wfstudioru\\translate\\translate\\": "" }
+        "psr-4": { "wfstudioru\\translate\\": "" }
     }
 }
